@@ -21,9 +21,9 @@
 #include "texture_patch.h"
 #include "texture_atlas.h"
 
-#define MAX_TEXTURE_SIZE (8 * 1024)
-#define PREF_TEXTURE_SIZE (4 * 1024)
-#define MIN_TEXTURE_SIZE (256)
+#define MAX_TEXTURE_SIZE (16 * 1024)
+#define PREF_TEXTURE_SIZE (8 * 1024)
+#define MIN_TEXTURE_SIZE (512)
 
 TEX_NAMESPACE_BEGIN
 
@@ -53,7 +53,7 @@ calculate_texture_size(std::list<TexturePatch::ConstPtr> const & texture_patches
             unsigned int waste = area - texture_patch->get_size();
 
             /* Only consider patches where the information dominates padding. */
-            if (static_cast<double>(waste) / texture_patch->get_size() > 1.0) {
+            if (static_cast<double>(waste) / texture_patch->get_size() > 20.0) {
                 /* Since the patches are sorted by size we can assume that only
                  * few further patches will contribute to the size and break. */
                 break;
